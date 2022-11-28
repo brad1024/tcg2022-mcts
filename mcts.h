@@ -26,7 +26,7 @@ public:
         double maxValue = -std::numeric_limits<double>::max();
         double value;
         for(int i=0; i<legalNodes.size(); i++){
-            value = -child->value/(child->visitCount+EPSILON) + sqrt(2*log(visitCount)/(child->visitCount+EPSILON));
+            value = -legalNodes[i]->value/(legalNodes[i]->visitCount+EPSILON) + sqrt(2*log(visitCount)/(legalNodes[i]->visitCount+EPSILON));
             if(value>=maxValue){
                 maxValue = value;
                 index = i;
