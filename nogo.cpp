@@ -16,7 +16,6 @@
 #include "agent.h"
 #include "episode.h"
 #include "statistics.h"
-#include "mcts.h"
 
 int main(int argc, const char* argv[]) {
 	std::cout << "HollowNoGo-Demo: ";
