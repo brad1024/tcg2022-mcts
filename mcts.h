@@ -201,7 +201,7 @@ public:
         //value = value>0.5?1:0;
 
         //backpropagation
-        if(who!=expandWho){
+        if(who==expandWho){
             value *= -1;
         }
         //std::cout << iter << "visited nodes: " << visitedNode.size() << std::endl;
