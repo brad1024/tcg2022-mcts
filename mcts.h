@@ -41,13 +41,13 @@ public:
         for(int i=0; i<legalNodes.size(); i++){
             
             value = -legalNodes[i]->value/(legalNodes[i]->visitCount+EPSILON) + sqrt(2*log(totalVisit)/(legalNodes[i]->visitCount+EPSILON));
-            std::cout << value << " ";
+            //std::cout << value << " ";
             if(value>maxValue){
                 maxValue = value;
                 index = i;
             }
         }
-        std::cout << "\nindex: " << index << std::endl;
+        //std::cout << "\nindex: " << index << std::endl;
         return legalNodes[index];
     } 
     void Expand(board::piece_type who){
@@ -68,32 +68,17 @@ public:
         }
     }
 
-    double Rollout(board::piece_type who){
+    double Rollout(board::piece_type role, board::piece_type who){
         std::vector<action::place> space(board::size_x * board::size_y);
-
-
-        
-
         int moves=0;
         board curState = state;
-        
+        board::piece_type lastMove = who;
         bool canMove=true;
         while(canMove){
             canMove = false;
-            if(moves%2==0){
-                for (size_t i = 0; i < space.size(); i++)
-			        space[i] = action::place(i, who);
-            }
-            else{
-                if(who==board::black){
-                    for (size_t i = 0; i < space.size(); i++)
-			            space[i] = action::place(i, board::white);
-                }
-                else{
-                    for (size_t i = 0; i < space.size(); i++)
-			            space[i] = action::place(i, board::black);
-                }
-            }
+            for (size_t i = 0; i < space.size(); i++)
+			        space[i] = action::place(i, lastMove);
+            
             std::shuffle (space.begin(), space.end(), std::default_random_engine());
             for (const action::place& move : space) {
                 board tmp = curState;
@@ -105,12 +90,13 @@ public:
             }
             if(canMove){
                 moves++;
+                lastMove = lastMove==board::black? board::white : board::black;
             }
             else{
                 break;
             }
         }
-        return moves%2==1 ? 1 : 0;
+        return role==lastMove? 0 : 1;
     }
 
     void Update(double _value){
@@ -186,9 +172,10 @@ public:
             expandWho=board::white;
         }
         currentNode->Expand(expandWho);
+        std::cout << currentNode->legalNodes.size() << std::endl;
         double value;
         if(!currentNode->isIsLeaf()){
-            value = currentNode->Rollout(expandWho);
+            value = currentNode->Rollout(who, expandWho);
             currentNode = currentNode->Select();
             currentNode->visitCount++;
             currentNode->value = value;
@@ -199,7 +186,6 @@ public:
         //std::cout << value << " ";
         //rollout
             
-        //value = value>0.5?1:0;
 
         //backpropagation
         if(who!=expandWho){
