@@ -163,6 +163,7 @@ public:
         while(!visitedNode.empty()){
             currentNode = visitedNode.top();
             value = currentNode->Update(value);
+            visitedNode.pop();
         }
         
     }
