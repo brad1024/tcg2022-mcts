@@ -109,8 +109,10 @@ private:
 class MTCS_Tree{
 public:
     MTCS_Tree(board state, int _iter){
+        printf("build tree");
         iter = _iter;
         root = new Node(state);
+        
     };
 
     action::place GetBestMove(){
