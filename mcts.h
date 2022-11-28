@@ -16,6 +16,7 @@ public:
     Node(board &b){
         state = b;
     }
+    double value = 0;
     bool isIsLeaf(){
         return this->isLeaf;
     }
@@ -109,7 +110,7 @@ public:
 
 
 private:
-    double value = 0;
+    
     int visitCount = 0;
     board state;
     std::vector<action::place> legalMoves;
@@ -146,6 +147,7 @@ public:
             visitedNode.push(currentNode);
         }
         
+        double value;
         //expand
         if((visitedNode.size()%2==1 && who==board::black) || (visitedNode.size()%2==0 && who==board::white)){
             currentNode->Expand(board::black);
@@ -153,13 +155,16 @@ public:
         else{
             currentNode->Expand(board::black);
         }
-        while(!currentNode->isIsLeaf()){
+        if(!currentNode->isIsLeaf()){
             currentNode = currentNode->Select();
             visitedNode.push(currentNode);
+            value = (float) rand()/RAND_MAX;
         }
         
         //rollout
-        double value = (float) rand()/RAND_MAX;
+        else{
+            value = currentNode->value;
+        }
         //value = value>0.5?1:0;
 
         //backpropagation
