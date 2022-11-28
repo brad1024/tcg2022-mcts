@@ -38,7 +38,7 @@ public:
         }
         for(int i=0; i<legalNodes.size(); i++){
             std::cout << value << " ";
-            value = -legalNodes[i]->value/(legalNodes[i]->visitCount+EPSILON) + sqrt(2*log(totalVisit)/(legalNodes[i]->visitCount+EPSILON));
+            value = legalNodes[i]->value/(legalNodes[i]->visitCount+EPSILON) + sqrt(2*log(totalVisit)/(legalNodes[i]->visitCount+EPSILON));
             if(value>=maxValue){
                 maxValue = value;
                 index = i;
