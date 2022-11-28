@@ -140,7 +140,7 @@ public:
             currentNode = currentNode->Select();
             visitedNode.push(currentNode);
         }
-
+        /*
         //expand
         currentNode->Expand();
         currentNode = currentNode->Select();
@@ -154,6 +154,7 @@ public:
             currentNode = visitedNode.top();
             value = currentNode->Update(value);
         }
+        */
     }
     
 private:
