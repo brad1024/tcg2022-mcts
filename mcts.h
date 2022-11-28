@@ -106,7 +106,7 @@ public:
                 maxValue = legalNodes[i]->value;
             }
         }
-        std::cout << "select index = " << index << std::endl;
+        std::cout << "select move = " << legalMoves[index] << std::endl;
         return legalMoves[index];
     }
 
