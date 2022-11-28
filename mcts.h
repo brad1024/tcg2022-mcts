@@ -99,7 +99,7 @@ public:
         }
         
         for(int i=0; i<legalNodes.size(); i++){
-            std::cout << legalNodes[i];
+            std::cout << legalNodes[i]->value;
             if(legalNodes[i]->value > maxValue){
                 index = i;
                 maxValue = legalNodes[i]->value;
