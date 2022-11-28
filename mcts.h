@@ -195,7 +195,7 @@ public:
         else{
             value = currentNode->value;
         }
-        //std::cout << value << " ";
+        std::cout << value << " ";
         //rollout
             
         //value = value>0.5?1:0;
@@ -204,7 +204,7 @@ public:
         //std::cout << iter << "visited nodes: " << visitedNode.size() << std::endl;
         while(!visitedNode.empty()){
             currentNode = visitedNode.top();
-            currentNode->Update(1);
+            currentNode->Update(value);
             
             visitedNode.pop();
         }
