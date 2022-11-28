@@ -15,6 +15,8 @@ public:
     Node(){};
     Node(board &b){
         state = b;
+        visitCount = 0;
+        value = 0;
     }
     double value = 0;
     int visitCount = 0;
@@ -39,7 +41,7 @@ public:
         for(int i=0; i<legalNodes.size(); i++){
             //std::cout << value << " ";
             value = legalNodes[i]->value/(legalNodes[i]->visitCount+EPSILON) + sqrt(2*log(totalVisit)/(legalNodes[i]->visitCount+EPSILON));
-            if(value>=maxValue){
+            if(value>maxValue){
                 maxValue = value;
                 index = i;
             }
@@ -154,7 +156,7 @@ public:
             visitedNode.push(currentNode);
         }
         
-        double value;
+        
         //expand
         if((visitedNode.size()%2==1 && who==board::black) || (visitedNode.size()%2==0 && who==board::white)){
             currentNode->Expand(board::black);
@@ -162,24 +164,22 @@ public:
         else{
             currentNode->Expand(board::black);
         }
+        double value = (float) rand()/RAND_MAX;
         if(!currentNode->isIsLeaf()){
             currentNode = currentNode->Select();
-            visitedNode.push(currentNode);
-            value = (float) rand()/RAND_MAX;
         }
         
         //rollout
-        else{
-            value = currentNode->value;
-        }
+            currentNode->value = value;
         //value = value>0.5?1:0;
 
         //backpropagation
         //std::cout << iter << "visited nodes: " << visitedNode.size() << std::endl;
         while(!visitedNode.empty()){
+            value *= -1;
             currentNode = visitedNode.top();
             currentNode->Update(value);
-            value *= -1;
+            
             visitedNode.pop();
         }
         
