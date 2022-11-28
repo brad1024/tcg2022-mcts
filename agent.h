@@ -130,7 +130,6 @@ public:
 		printf("take action");
 		
 		MTCS_Tree tree = MTCS_Tree(state, 100);
-		return action();
 		return tree.GetBestMove();
 	}
 	

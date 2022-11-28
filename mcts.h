@@ -120,6 +120,7 @@ public:
             Simulate();
             iter--;
         }
+        return action();
         return root->GetBestmove();
     }
     
