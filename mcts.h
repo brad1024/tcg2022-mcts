@@ -204,7 +204,7 @@ public:
         //std::cout << iter << "visited nodes: " << visitedNode.size() << std::endl;
         while(!visitedNode.empty()){
             currentNode = visitedNode.top();
-            currentNode->Update(value);
+            currentNode->Update(1);
             
             visitedNode.pop();
         }
