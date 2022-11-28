@@ -201,19 +201,24 @@ public:
         //value = value>0.5?1:0;
 
         //backpropagation
+        if(who!=expandWho){
+            value *= -1;
+        }
         //std::cout << iter << "visited nodes: " << visitedNode.size() << std::endl;
         while(!visitedNode.empty()){
             currentNode = visitedNode.top();
             currentNode->Update(value);
-            
+            value *= -1;
             visitedNode.pop();
         }
+
+        /*
         std::cout << "\nroot child: " << std::endl;
         for(int i=0; i<root->legalNodes.size(); i++){
             std::cout << root->legalNodes[i]->value << " ";
         }
         std::cout << "\nroot value: " << root->value << std::endl;
-        
+        */
     }
     
 private:
