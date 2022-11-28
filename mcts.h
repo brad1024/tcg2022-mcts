@@ -195,7 +195,7 @@ public:
         else{
             value = currentNode->value;
         }
-        std::cout << value << " ";
+        //std::cout << value << " ";
         //rollout
             
         //value = value>0.5?1:0;
