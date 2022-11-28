@@ -106,7 +106,7 @@ public:
             }
         }
         std::cout << std::endl;
-        //std::cout << "select move = " << legalMoves[index] << std::endl;
+        std::cout << "select move = " << legalMoves[index] << std::endl;
         return legalMoves[index];
     }
 
