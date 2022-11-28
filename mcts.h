@@ -39,14 +39,14 @@ public:
             totalVisit += legalNodes[i]->visitCount;
         }
         for(int i=0; i<legalNodes.size(); i++){
-            //std::cout << value << " ";
+            std::cout << value << " ";
             value = -legalNodes[i]->value/(legalNodes[i]->visitCount+EPSILON) + sqrt(2*log(totalVisit)/(legalNodes[i]->visitCount+EPSILON));
             if(value>maxValue){
                 maxValue = value;
                 index = i;
             }
         }
-        //std::cout << "\nindex: " << index << std::endl;
+        std::cout << "\nindex: " << index << std::endl;
         return legalNodes[index];
     } 
     void Expand(board::piece_type who){
@@ -201,7 +201,7 @@ public:
         //value = value>0.5?1:0;
 
         //backpropagation
-        if(who==expandWho){
+        if(who!=expandWho){
             value *= -1;
         }
         //std::cout << iter << "visited nodes: " << visitedNode.size() << std::endl;
@@ -213,10 +213,10 @@ public:
         }
 
         
-        std::cout << "\nroot child: ";
-        for(int i=0; i<root->legalNodes.size(); i++){
-            std::cout << root->legalNodes[i]->value << " ";
-        }
+        //std::cout << "\nroot child: ";
+        //for(int i=0; i<root->legalNodes.size(); i++){
+        //    std::cout << root->legalNodes[i]->value << " ";
+        //}
         //std::cout << "\nroot value: " << root->value << std::endl;
         
     }
