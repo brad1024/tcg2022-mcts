@@ -164,7 +164,6 @@ public:
             currentNode = currentNode->Select();
             visitedNode.push(currentNode);
         }
-        printf("select done\n");
         
         //expand
         board::piece_type expandWho;
@@ -202,10 +201,10 @@ public:
         }
 
         
-        //std::cout << "\nroot child: ";
-        //for(int i=0; i<root->legalNodes.size(); i++){
-        //    std::cout << root->legalNodes[i]->value << " ";
-        //}
+        std::cout << "\nroot child: ";
+        for(int i=0; i<root->legalNodes.size(); i++){
+            std::cout << root->legalNodes[i]->value << " ";
+        }
         //std::cout << "\nroot value: " << root->value << std::endl;
         
     }
