@@ -117,7 +117,7 @@ public:
         }
         //std::cout << "\nchild value:";
         for(int i=0; i<legalNodes.size(); i++){
-            std::cout << legalNodes[i]->value << " ";
+            //std::cout << legalNodes[i]->value << " ";
             if(-legalNodes[i]->value > maxValue){
                 index = i;
                 maxValue = -legalNodes[i]->value;
@@ -142,7 +142,7 @@ public:
     };
 
     action::place GetBestMove(){
-        printf("start mcts tree search\n");
+        //printf("start mcts tree search\n");
         while(iter>0){
             Simulate();
             iter--;
