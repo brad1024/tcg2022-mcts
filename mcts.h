@@ -148,10 +148,10 @@ public:
         
         //expand
         if(visitedNode.size()%2==1 && who==board::black || visitedNode.size()%2==0 && who==board::white){
-            currentNode->Expand(board::black);
+            currentNode->Expand(board::white);
         }
         else{
-            currentNode->Expand(board::white);
+            currentNode->Expand(board::black);
         }
         while(!currentNode->isIsLeaf()){
             currentNode = currentNode->Select();
