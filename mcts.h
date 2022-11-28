@@ -117,7 +117,7 @@ public:
 
     action::place GetBestMove(){
         while(iter>0){
-            Simulate();
+            //Simulate();
             iter--;
         }
         return action();
