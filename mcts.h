@@ -153,6 +153,7 @@ public:
     };
 
     action::place GetBestMove(){
+        printf("start mcts tree search\n");
         while(iter>0){
             Simulate();
             iter--;
@@ -191,7 +192,7 @@ public:
         else{
             value = currentNode->value;
         }
-        
+        std::cout << value << " " << std::endl;
         //rollout
             
         //value = value>0.5?1:0;
