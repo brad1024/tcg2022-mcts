@@ -172,13 +172,14 @@ public:
         //value = value>0.5?1:0;
 
         //backpropagation
+        std::cout << "visited nodes: " << visitedNode.size() << std::endl;
         while(!visitedNode.empty()){
             currentNode = visitedNode.top();
             currentNode->Update(value);
             value *= -1;
             visitedNode.pop();
         }
-        std::cout << "visited nodes: " << visitedNode.size() << std::endl;
+        
         for(int i=0; i<root->legalNodes.size(); i++){
             std::cout << root->legalNodes[i]->value << "  ";
         }
