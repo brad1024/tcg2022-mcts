@@ -32,6 +32,7 @@ public:
                 index = i;
             }
         }
+        std::cout << "select index = " << index << std::endl;
         return legalNodes[index];
     } 
     void Expand(board::piece_type who){
