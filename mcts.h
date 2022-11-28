@@ -151,7 +151,7 @@ public:
             currentNode->Expand(board::black);
         }
         else{
-            currentNode->Expand(board::white);
+            currentNode->Expand(board::black);
         }
         while(!currentNode->isIsLeaf()){
             currentNode = currentNode->Select();
