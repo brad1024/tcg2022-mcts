@@ -25,8 +25,12 @@ public:
         //TODO: return the move idx with max UCT value
         double maxValue = -std::numeric_limits<double>::max();
         double value;
+        int totalVisit = 0;
         for(int i=0; i<legalNodes.size(); i++){
-            value = -legalNodes[i]->value/(legalNodes[i]->visitCount+EPSILON) + sqrt(2*log(visitCount)/(legalNodes[i]->visitCount+EPSILON));
+            totalVisit += legalNodes[i]->visitCount;
+        }
+        for(int i=0; i<legalNodes.size(); i++){
+            value = -legalNodes[i]->value/(legalNodes[i]->visitCount+EPSILON) + sqrt(2*log(totalVisit)/(legalNodes[i]->visitCount+EPSILON));
             if(value>=maxValue){
                 maxValue = value;
                 index = i;
@@ -82,11 +86,10 @@ public:
         return moves%2==1 ? 1 : 0;
     }
 
-    double Update(double _value){
+    void Update(double _value){
         //TODO: update value
         visitCount++;
         value += _value;
-        return value;
     }
     
     action::place GetBestmove(){
@@ -161,9 +164,11 @@ public:
 
         //backpropagation
         //printf("backpropagation\n");
+        visitedNode.pop();
         while(!visitedNode.empty()){
             currentNode = visitedNode.top();
-            value = currentNode->Update(value);
+            currentNode->Update(value);
+            value *= -1;
             visitedNode.pop();
         }
         
