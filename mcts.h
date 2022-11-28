@@ -41,13 +41,13 @@ public:
         for(int i=0; i<legalNodes.size(); i++){
             
             value = -legalNodes[i]->value/(legalNodes[i]->visitCount+EPSILON) + sqrt(2*log(totalVisit)/(legalNodes[i]->visitCount+EPSILON));
-            //std::cout << value << " ";
+            std::cout << legalNodes[i]->value << " ";
             if(value>maxValue){
                 maxValue = value;
                 index = i;
             }
         }
-        //std::cout << "\nindex: " << index << std::endl;
+        std::cout << " select node: " << index << std::endl;
         return legalNodes[index];
     } 
     void Expand(board::piece_type who){
@@ -161,7 +161,7 @@ public:
             currentNode = currentNode->Select();
             visitedNode.push(currentNode);
         }
-        
+        printf("select done\n");
         
         //expand
         board::piece_type expandWho;
@@ -172,7 +172,6 @@ public:
             expandWho=board::white;
         }
         currentNode->Expand(expandWho);
-        std::cout << currentNode->legalNodes.size() << std::endl;
         double value;
         if(!currentNode->isIsLeaf()){
             value = currentNode->Rollout(who, expandWho);
