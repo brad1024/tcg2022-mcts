@@ -101,9 +101,9 @@ private:
 	board::piece_type who;
 };
 
-class  MCTS_Player : public agent {
+class  MCTS_Player : public random_agent {
 public:
-	MCTS_Player(const std::string& args = "") : agent("name=random role=unknown " + args),
+	MCTS_Player(const std::string& args = "") : random_agent("name=random role=unknown " + args),
 		space(board::size_x * board::size_y), who(board::empty) {
 		if (name().find_first_of("[]():; ") != std::string::npos)
 			throw std::invalid_argument("invalid name: " + name());
