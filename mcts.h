@@ -119,7 +119,7 @@ private:
 class MTCS_Tree{
 public:
     MTCS_Tree(board::piece_type _who, board state, int _iter){
-        printf("build tree");
+        //printf("build tree");
         who = _who;
         iter = _iter;
         root = new Node(state);
@@ -135,7 +135,7 @@ public:
     }
     
     void Simulate(){
-        printf("start simulate\n");
+        //printf("start simulate\n");
         while(!visitedNode.empty()){
             visitedNode.pop();
         }
@@ -148,7 +148,7 @@ public:
         }
         
         //expand
-        printf("expand\n");
+        //printf("expand\n");
         currentNode->Expand(who);
         while(!currentNode->isIsLeaf()){
             currentNode = currentNode->Select();
@@ -159,7 +159,7 @@ public:
         double value = rand();
 
         //backpropagation
-        printf("backpropagation\n");
+        //printf("backpropagation\n");
         while(!visitedNode.empty()){
             currentNode = visitedNode.top();
             value = currentNode->Update(value);
