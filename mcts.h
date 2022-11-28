@@ -122,6 +122,7 @@ public:
     }
     
     void Simulate(){
+        printf("start simulate/n");
         while(!visitedNode.empty()){
             visitedNode.pop();
         }
