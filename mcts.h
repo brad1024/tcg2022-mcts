@@ -67,18 +67,36 @@ public:
         }
     }
 
-    double Rollout(){
+    double Rollout(board::piece_type who){
         std::vector<action::place> space(board::size_x * board::size_y);
-        std::shuffle (space.begin(), space.end(), std::default_random_engine());
+
+
+        
 
         int moves=0;
         board curState = state;
-        bool canMove;
-        while(true){
+        
+        bool canMove=true;
+        while(canMove){
             canMove = false;
+            if(moves%2==0){
+                for (size_t i = 0; i < space.size(); i++)
+			        space[i] = action::place(i, who);
+            }
+            else{
+                if(who==board::black){
+                    for (size_t i = 0; i < space.size(); i++)
+			            space[i] = action::place(i, board::white);
+                }
+                else{
+                    for (size_t i = 0; i < space.size(); i++)
+			            space[i] = action::place(i, board::black);
+                }
+            }
+            std::shuffle (space.begin(), space.end(), std::default_random_engine());
             for (const action::place& move : space) {
                 board tmp = curState;
-                if (move.apply(curState) == board::legal){
+                if (move.apply(tmp) == board::legal){
                     canMove = true;
                     curState = tmp;
                     break;
@@ -164,10 +182,14 @@ public:
         else{
             currentNode->Expand(board::white);
         }
-        double value = (float) rand()/RAND_MAX;
+        double value;
         if(!currentNode->isIsLeaf()){
             currentNode = currentNode->Select();
+            value = currentNode->Rollout(who);
             currentNode->value = value;
+        }
+        else{
+            value = currentNode->value;
         }
         
         //rollout
