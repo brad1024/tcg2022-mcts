@@ -148,6 +148,7 @@ public:
         }
         
         //expand
+        printf("expand\n");
         currentNode->Expand(who);
         while(!currentNode->isIsLeaf()){
             currentNode = currentNode->Select();
@@ -158,6 +159,7 @@ public:
         double value = rand();
 
         //backpropagation
+        printf("backpropagation\n");
         while(!visitedNode.empty()){
             currentNode = visitedNode.top();
             value = currentNode->Update(value);
