@@ -182,12 +182,12 @@ public:
             value *= -1;
             visitedNode.pop();
         }
-        /*
+        
         for(int i=0; i<root->legalNodes.size(); i++){
             std::cout << root->legalNodes[i]->value << "  ";
         }
         std::cout << "\nroot value: " << root->value << std::endl;
-        */
+        
     }
     
 private:
