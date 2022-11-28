@@ -177,16 +177,19 @@ public:
         
         
         //expand
+        board::piece_type expandWho;
         if((visitedNode.size()%2==1 && who==board::black) || (visitedNode.size()%2==0 && who==board::white)){
-            currentNode->Expand(board::black);
+            expandWho=board::black;
         }
         else{
-            currentNode->Expand(board::white);
+            expandWho=board::white;
         }
+        currentNode->Expand(expandWho);
         double value;
         if(!currentNode->isIsLeaf()){
+            value = currentNode->Rollout(expandWho);
             currentNode = currentNode->Select();
-            value = currentNode->Rollout(who);
+            currentNode->visitCount++;
             currentNode->value = value;
         }
         else{
