@@ -45,7 +45,6 @@ public:
         
         for (const action::place& move : space) {
 			board after = state;
-            std::cout << move.apply(after) << std::endl;
 			if (move.apply(after) == board::legal){
                 legalNodes.push_back(new Node(after));
                 legalMoves.push_back(move);
