@@ -160,7 +160,7 @@ public:
         
         //rollout
         double value = (float) rand()/RAND_MAX;
-        value = value>0.5?1:0;
+        //value = value>0.5?1:0;
 
         //backpropagation
         while(!visitedNode.empty()){
