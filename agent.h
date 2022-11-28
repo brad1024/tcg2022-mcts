@@ -91,6 +91,7 @@ public:
 		std::shuffle(space.begin(), space.end(), engine);
 		for (const action::place& move : space) {
 			board after = state;
+			std::cout << move.apply(after) << std::endl;
 			if (move.apply(after) == board::legal)
 				return move;
 		}
