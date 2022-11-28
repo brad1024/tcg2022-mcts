@@ -20,8 +20,6 @@ public:
         return this->isLeaf;
     }
     Node* Select(){
-        return legalNodes[0];
-
         Node* bestNode;
 
         //TODO: return the move idx with max UCT value
