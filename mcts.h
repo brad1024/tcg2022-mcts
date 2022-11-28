@@ -20,19 +20,19 @@ public:
         return this->isLeaf;
     }
     Node* Select(){
-        Node* bestNode;
+        int index=0;
 
         //TODO: return the move idx with max UCT value
         double maxValue = -std::numeric_limits<double>::max();
         double value;
-        for(Node* child : legalNodes){
+        for(int i=0; i<legalNodes.size(); i++){
             value = -child->value/(child->visitCount+EPSILON) + sqrt(2*log(visitCount)/(child->visitCount+EPSILON));
-            if(value>maxValue){
+            if(value>=maxValue){
                 maxValue = value;
-                bestNode = child;
+                index = i;
             }
         }
-        return bestNode;
+        return legalNodes[index];
     } 
     void Expand(board::piece_type who){
         //TODO: expand child
