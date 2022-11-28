@@ -212,13 +212,13 @@ public:
             visitedNode.pop();
         }
 
-        /*
-        std::cout << "\nroot child: " << std::endl;
+        
+        std::cout << "\nroot child: ";
         for(int i=0; i<root->legalNodes.size(); i++){
             std::cout << root->legalNodes[i]->value << " ";
         }
-        std::cout << "\nroot value: " << root->value << std::endl;
-        */
+        //std::cout << "\nroot value: " << root->value << std::endl;
+        
     }
     
 private:
