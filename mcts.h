@@ -28,7 +28,7 @@ public:
         double maxValue = -std::numeric_limits<double>::max();
         double value;
         for(Node* child : legalNodes){
-            value = child->value/(child->visitCount+EPSILON) + sqrt(log(visitCount)/(child->visitCount+EPSILON));
+            value = -child->value/(child->visitCount+EPSILON) + sqrt(2*log(visitCount)/(child->visitCount+EPSILON));
             if(value>maxValue){
                 maxValue = value;
                 bestNode = child;
@@ -36,10 +36,12 @@ public:
         }
         return bestNode;
     } 
-    void Expand(){
+    void Expand(board::piece_type who){
         //TODO: expand child
         std::vector<action::place> space(board::size_x * board::size_y);
-        std::cout<<"space size:" << space.size();
+        for (size_t i = 0; i < space.size(); i++)
+			space[i] = action::place(i, who);
+        //std::cout<<"space size:" << space.size();
         
         for (const action::place& move : space) {
 			board after = state;
@@ -49,8 +51,10 @@ public:
                 legalMoves.push_back(move);
             }
 		}
-        std::cout<<"legalNodes size:" << legalNodes.size();
-        isLeaf = false;
+        //std::cout<<"legalNodes size:" << legalNodes.size();
+        if(!legalNodes.empty()){
+            isLeaf = false;
+        }
     }
 
     double Rollout(){
@@ -101,7 +105,6 @@ public:
                 maxValue = legalNodes[i]->value;
             }
         }
-        
     }
 
 
@@ -116,11 +119,11 @@ private:
 
 class MTCS_Tree{
 public:
-    MTCS_Tree(board state, int _iter){
+    MTCS_Tree(board::piece_type _who, board state, int _iter){
         printf("build tree");
+        who = _who;
         iter = _iter;
         root = new Node(state);
-        
     };
 
     action::place GetBestMove(){
@@ -146,23 +149,26 @@ public:
         }
         
         //expand
-        currentNode->Expand();
-        //currentNode = currentNode->Select();
-        //visitedNode.push(currentNode);
-        /*
+        currentNode->Expand(who);
+        while(!currentNode->isIsLeaf()){
+            currentNode = currentNode->Select();
+            visitedNode.push(currentNode);
+        }
+        
         //rollout
-        double value = currentNode->Rollout();
+        double value = rand();
 
         //backpropagation
         while(!visitedNode.empty()){
             currentNode = visitedNode.top();
             value = currentNode->Update(value);
         }
-        */
+        
     }
     
 private:
     int iter;
     Node* root;
     std::stack<Node*> visitedNode;
+    board::piece_type who;
 };
