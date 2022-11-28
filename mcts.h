@@ -167,10 +167,11 @@ public:
         double value = (float) rand()/RAND_MAX;
         if(!currentNode->isIsLeaf()){
             currentNode = currentNode->Select();
+            currentNode->value = value;
         }
         
         //rollout
-            currentNode->value = value;
+            
         //value = value>0.5?1:0;
 
         //backpropagation
