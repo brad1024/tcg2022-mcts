@@ -71,10 +71,9 @@ int main(int argc, const char* argv[]) {
 
 	MCTS_Player black("name=black " + black_args + " role=black");
 	player white("name=white " + white_args + " role=white");
-	printf("game start");
 	if (!shell) { // launch standard local games
 		while (!stats.is_finished()) {
-//			std::cerr << "======== Game " << stats.step() << " ========" << std::endl;
+			std::cerr << "======== Game " << stats.step() << " ========" << std::endl;
 			black.open_episode("~:" + white.name());
 			white.open_episode(black.name() + ":~");
 
@@ -83,7 +82,7 @@ int main(int argc, const char* argv[]) {
 			while (true) {
 				agent& who = game.take_turns(black, white);
 				action move = who.take_action(game.state());
-//				std::cerr << game.state() << "#" << game.step() << " " << who.name() << ": " << move << std::endl;
+				std::cerr << game.state() << "#" << game.step() << " " << who.name() << ": " << move << std::endl;
 				if (game.apply_action(move) != true) break;
 				if (who.check_for_win(game.state())) break;
 			}

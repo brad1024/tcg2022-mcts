@@ -37,14 +37,14 @@ public:
             totalVisit += legalNodes[i]->visitCount;
         }
         for(int i=0; i<legalNodes.size(); i++){
-            std::cout << value << " ";
+            //std::cout << value << " ";
             value = -legalNodes[i]->value/(legalNodes[i]->visitCount+EPSILON) + sqrt(2*log(totalVisit)/(legalNodes[i]->visitCount+EPSILON));
             if(value>=maxValue){
                 maxValue = value;
                 index = i;
             }
         }
-        std::cout << "index: " + index << std::endl;
+        //std::cout << "index: " + index << std::endl;
         return legalNodes[index];
     } 
     void Expand(board::piece_type who){
@@ -183,9 +183,9 @@ public:
         }
         
         for(int i=0; i<root->legalNodes.size(); i++){
-            std::cout << root->legalNodes[i]->value << "  ";
+            //std::cout << root->legalNodes[i]->value << "  ";
         }
-        std::cout << std::endl;
+        //std::cout << std::endl;
     }
     
 private:
