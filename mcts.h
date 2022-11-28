@@ -39,6 +39,8 @@ public:
     void Expand(){
         //TODO: expand child
         std::vector<action::place> space(board::size_x * board::size_y);
+        std::cout<<"space size:" << space.size();
+        
         for (const action::place& move : space) {
 			board after = state;
 			if (move.apply(after) == board::legal){
@@ -46,6 +48,7 @@ public:
                 legalMoves.push_back(move);
             }
 		}
+        
         isLeaf = false;
     }
 
@@ -143,8 +146,8 @@ public:
         
         //expand
         currentNode->Expand();
-        currentNode = currentNode->Select();
-        visitedNode.push(currentNode);
+        //currentNode = currentNode->Select();
+        //visitedNode.push(currentNode);
         /*
         //rollout
         double value = currentNode->Rollout();
