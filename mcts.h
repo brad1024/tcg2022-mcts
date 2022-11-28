@@ -17,6 +17,12 @@ public:
         state = b;
     }
     double value = 0;
+    int visitCount = 0;
+    board state;
+    std::vector<action::place> legalMoves;
+    std::vector<Node*> legalNodes;
+    bool isLeaf = true;
+
     bool isIsLeaf(){
         return this->isLeaf;
     }
@@ -99,25 +105,21 @@ public:
         }
         
         for(int i=0; i<legalNodes.size(); i++){
-            std::cout << legalNodes[i]->value << "  ";
+            //std::cout << legalNodes[i]->value << "  ";
             if(legalNodes[i]->value > maxValue){
                 index = i;
                 maxValue = legalNodes[i]->value;
             }
         }
-        std::cout << std::endl;
-        std::cout << "select move = " << legalMoves[index] << std::endl;
+        //std::cout << std::endl;
+        //std::cout << "select move = " << legalMoves[index] << std::endl;
         return legalMoves[index];
     }
 
 
 private:
     
-    int visitCount = 0;
-    board state;
-    std::vector<action::place> legalMoves;
-    std::vector<Node*> legalNodes;
-    bool isLeaf = true;
+    
 };
 
 class MTCS_Tree{
@@ -176,7 +178,10 @@ public:
             value *= -1;
             visitedNode.pop();
         }
-        
+        for(int i=0; i<root->legalNodes.size(); i++){
+            std::cout << root->legalNodes[i]->value << "  ";
+        }
+        std::cout << std::endl;
     }
     
 private:
