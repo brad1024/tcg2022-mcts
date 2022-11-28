@@ -36,7 +36,6 @@ public:
                 index = i;
             }
         }
-        //std::cout << "select index = " << index << std::endl;
         return legalNodes[index];
     } 
     void Expand(board::piece_type who){
@@ -44,7 +43,6 @@ public:
         std::vector<action::place> space(board::size_x * board::size_y);
         for (size_t i = 0; i < space.size(); i++)
 			space[i] = action::place(i, who);
-        //std::cout<<"space size:" << space.size();
         
         for (const action::place& move : space) {
 			board after = state;
@@ -53,7 +51,6 @@ public:
                 legalMoves.push_back(move);
             }
 		}
-        //std::cout<<"legalNodes size:" << legalNodes.size();
         if(!legalNodes.empty()){
             isLeaf = false;
         }
@@ -123,7 +120,6 @@ private:
 class MTCS_Tree{
 public:
     MTCS_Tree(board::piece_type _who, board state, int _iter){
-        //printf("build tree");
         who = _who;
         iter = _iter;
         root = new Node(state);
@@ -139,7 +135,6 @@ public:
     }
     
     void Simulate(){
-        //printf("start simulate\n");
         while(!visitedNode.empty()){
             visitedNode.pop();
         }
@@ -152,8 +147,12 @@ public:
         }
         
         //expand
-        //printf("expand\n");
-        currentNode->Expand(who);
+        if(visitedNode.size()%2==1 && who==board::black || visitedNode.size()%2==0 && who==board::white){
+            currentNode->Expand(board::black);
+        }
+        else{
+            currentNode->Expand(board::white);
+        }
         while(!currentNode->isIsLeaf()){
             currentNode = currentNode->Select();
             visitedNode.push(currentNode);
@@ -161,9 +160,8 @@ public:
         
         //rollout
         double value = (float) rand()/RAND_MAX;
-        //std::cout << "rollout value = " << value << std::endl;
+
         //backpropagation
-        //printf("backpropagation\n");
         while(!visitedNode.empty()){
             currentNode = visitedNode.top();
             currentNode->Update(value);
