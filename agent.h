@@ -22,6 +22,7 @@
 class agent {
 public:
 	agent(const std::string& args = "") {
+		printf("agent set");
 		std::stringstream ss("name=unknown role=unknown " + args);
 		for (std::string pair; ss >> pair; ) {
 			std::string key = pair.substr(0, pair.find('='));
