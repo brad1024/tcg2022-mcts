@@ -118,7 +118,7 @@ public:
         //std::cout << "\nchild value:";
         for(int i=0; i<legalNodes.size(); i++){
             //std::cout << legalNodes[i]->value << " ";
-            if(legalNodes[i]->value > maxValue){
+            if(-legalNodes[i]->value > maxValue){
                 index = i;
                 maxValue = legalNodes[i]->value;
             }
@@ -201,12 +201,11 @@ public:
         }
 
         
-        std::cout << "\nroot child: ";
-        for(int i=0; i<root->legalNodes.size(); i++){
-            std::cout << root->legalNodes[i]->value << " ";
-        }
+        //std::cout << "\nroot child: ";
+        //for(int i=0; i<root->legalNodes.size(); i++){
+        //    std::cout << root->legalNodes[i]->value << " ";
+        //}
         //std::cout << "\nroot value: " << root->value << std::endl;
-        
     }
     
 private:
