@@ -203,7 +203,6 @@ public:
         //backpropagation
         //std::cout << iter << "visited nodes: " << visitedNode.size() << std::endl;
         while(!visitedNode.empty()){
-            value *= -1;
             currentNode = visitedNode.top();
             currentNode->Update(value);
             
