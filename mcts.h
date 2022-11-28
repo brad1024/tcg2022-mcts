@@ -32,7 +32,7 @@ public:
                 index = i;
             }
         }
-        std::cout << "select index = " << index << std::endl;
+        //std::cout << "select index = " << index << std::endl;
         return legalNodes[index];
     } 
     void Expand(board::piece_type who){
@@ -96,13 +96,15 @@ public:
         if(legalMoves.size()==0){
             return action();
         }
-        return legalMoves[index];
+        
         for(int i=0; i<legalNodes.size(); i++){
             if(legalNodes[i]->value > maxValue){
                 index = i;
                 maxValue = legalNodes[i]->value;
             }
         }
+        std::cout << "select index = " << index << std::endl;
+        return legalMoves[index];
     }
 
 
