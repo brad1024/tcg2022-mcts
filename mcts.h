@@ -48,7 +48,7 @@ public:
                 legalMoves.push_back(move);
             }
 		}
-        
+        std::cout<<"legalNodes size:" << legalNodes.size();
         isLeaf = false;
     }
 
