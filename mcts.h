@@ -178,6 +178,7 @@ public:
             value *= -1;
             visitedNode.pop();
         }
+        std::cout << "visited nodes: " << visitedNode.size() << std::endl;
         for(int i=0; i<root->legalNodes.size(); i++){
             std::cout << root->legalNodes[i]->value << "  ";
         }
