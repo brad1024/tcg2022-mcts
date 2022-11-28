@@ -25,11 +25,11 @@ public:
         //TODO: return the move idx with max UCT value
         double maxValue = -std::numeric_limits<double>::max();
         double value;
-        for(std::tuple<action::place, Node*> child : legalNodes){
-            value = std::get<1>(child)->value/(std::get<1>(child)->visitCount+EPSILON) + sqrt(log(visitCount)/(std::get<1>(child)->visitCount+EPSILON));
+        for(Node* child : legalNodes){
+            value = child->value/(child->visitCount+EPSILON) + sqrt(log(visitCount)/(child->visitCount+EPSILON));
             if(value>maxValue){
                 maxValue = value;
-                bestNode = std::get<1>(child);
+                bestNode = child;
             }
         }
         return bestNode;
@@ -40,7 +40,8 @@ public:
         for (const action::place& move : space) {
 			board after = state;
 			if (move.apply(after) == board::legal){
-                legalNodes.push_back(std::tuple{move, new Node(after)} );
+                legalNodes.push_back(new Node(after));
+                legalMoves.push_back(move);
             }
 		}
         isLeaf = false;
@@ -81,7 +82,18 @@ public:
     }
     
     action::place GetBestmove(){
-
+        int index = 0;
+        double maxValue = -std::numeric_limits<double>::max();
+        if(legalMoves.size()==0){
+            return action();
+        }
+        for(int i=0; i<legalNodes.size(); i++){
+            if(legalNodes[i]->value > maxValue){
+                index = i;
+                maxValue = legalNodes[i]->value;
+            }
+        }
+        return legalMoves[index];
     }
 
 
@@ -89,8 +101,8 @@ private:
     double value = 0;
     int visitCount = 0;
     board state;
-    int bestMoveIdx;
-    std::vector<std::tuple<action::place, Node*> > legalNodes;
+    std::vector<action::place> legalMoves;
+    std::vector<Node*> legalNodes;
     bool isLeaf = true;
 };
 
