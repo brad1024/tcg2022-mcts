@@ -160,7 +160,7 @@ public:
         }
         
         //rollout
-        double value = rand();
+        double value = (float) rand()/RAND_MAX;
         std::cout << "rollout value = " << value << std::endl;
         //backpropagation
         //printf("backpropagation\n");
