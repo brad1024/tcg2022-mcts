@@ -115,16 +115,15 @@ public:
         if(legalMoves.size()==0){
             return action();
         }
-        //std::cout << "\nchild value:";
+        std::cout << "\nchild value:";
         for(int i=0; i<legalNodes.size(); i++){
-            //std::cout << legalNodes[i]->value << " ";
+            std::cout << legalNodes[i]->value << " ";
             if(-legalNodes[i]->value > maxValue){
                 index = i;
-                maxValue = legalNodes[i]->value;
+                maxValue = -legalNodes[i]->value;
             }
         }
-        //std::cout << std::endl;
-        //std::cout << "select move = " << legalMoves[index] << std::endl;
+        std::cout << "select move = " << index << std::endl;
         return legalMoves[index];
     }
 
