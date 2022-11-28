@@ -125,13 +125,14 @@ public:
 		}
 		return action();
 	}
-	
+	*/
 	virtual action take_action(const board& state) {
+		return action();
 		printf("take action");
 		MTCS_Tree tree = MTCS_Tree(state, 100);
 		return tree.GetBestMove();
 	}
-	*/
+	
 private:
 	std::vector<action::place> space;
 	board::piece_type who;
