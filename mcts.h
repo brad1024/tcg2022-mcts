@@ -127,13 +127,13 @@ public:
         }
         
         for(int i=0; i<legalNodes.size(); i++){
-            //std::cout << legalNodes[i]->value << "  ";
+            std::cout << legalNodes[i]->value << " ";
             if(legalNodes[i]->value > maxValue){
                 index = i;
                 maxValue = legalNodes[i]->value;
             }
         }
-        //std::cout << std::endl;
+        std::cout << std::endl;
         //std::cout << "select move = " << legalMoves[index] << std::endl;
         return legalMoves[index];
     }
@@ -195,7 +195,7 @@ public:
         else{
             value = currentNode->value;
         }
-        std::cout << value << " ";
+        //std::cout << value << " ";
         //rollout
             
         //value = value>0.5?1:0;
