@@ -162,7 +162,7 @@ public:
             currentNode->Expand(board::black);
         }
         else{
-            currentNode->Expand(board::black);
+            currentNode->Expand(board::white);
         }
         double value = (float) rand()/RAND_MAX;
         if(!currentNode->isIsLeaf()){
