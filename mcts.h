@@ -20,8 +20,10 @@ public:
         return this->isLeaf;
     }
     Node* Select(){
-        action::place bestmove;
+        return legalNodes[0];
+
         Node* bestNode;
+
         //TODO: return the move idx with max UCT value
         double maxValue = -std::numeric_limits<double>::max();
         double value;
