@@ -109,13 +109,13 @@ public:
         }
         
         for(int i=0; i<legalNodes.size(); i++){
-            std::cout << legalNodes[i]->value << "  ";
+            //std::cout << legalNodes[i]->value << "  ";
             if(legalNodes[i]->value > maxValue){
                 index = i;
                 maxValue = legalNodes[i]->value;
             }
         }
-        std::cout << std::endl;
+        //std::cout << std::endl;
         //std::cout << "select move = " << legalMoves[index] << std::endl;
         return legalMoves[index];
     }
@@ -183,12 +183,12 @@ public:
             
             visitedNode.pop();
         }
-        
+        /*
         for(int i=0; i<root->legalNodes.size(); i++){
             std::cout << root->legalNodes[i]->value << "  ";
         }
         std::cout << "\nroot value: " << root->value << std::endl;
-        
+        */
     }
     
 private:
