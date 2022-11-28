@@ -161,10 +161,9 @@ public:
         
         //rollout
         double value = (float) rand()/RAND_MAX;
-        std::cout << "rollout value = " << value << std::endl;
+        //std::cout << "rollout value = " << value << std::endl;
         //backpropagation
         //printf("backpropagation\n");
-        visitedNode.pop();
         while(!visitedNode.empty()){
             currentNode = visitedNode.top();
             currentNode->Update(value);
