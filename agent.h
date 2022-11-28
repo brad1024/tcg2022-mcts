@@ -86,6 +86,7 @@ public:
 			space[i] = action::place(i, who);
 	}
 
+	
 	virtual action take_action(const board& state) {
 		std::shuffle(space.begin(), space.end(), engine);
 		for (const action::place& move : space) {
@@ -95,7 +96,7 @@ public:
 		}
 		return action();
 	}
-
+	
 private:
 	std::vector<action::place> space;
 	board::piece_type who;
@@ -114,12 +115,22 @@ public:
 		for (size_t i = 0; i < space.size(); i++)
 			space[i] = action::place(i, who);
 	}
-
+	virtual action take_action(const board& state) {
+		std::shuffle(space.begin(), space.end(), engine);
+		for (const action::place& move : space) {
+			board after = state;
+			if (move.apply(after) == board::legal)
+				return move;
+		}
+		return action();
+	}
+	/*
 	virtual action take_action(const board& state) {
 		printf("take action");
 		MTCS_Tree tree = MTCS_Tree(state, 100);
 		return tree.GetBestMove();
 	}
+	*/
 private:
 	std::vector<action::place> space;
 	board::piece_type who;
