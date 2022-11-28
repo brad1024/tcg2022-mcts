@@ -161,7 +161,7 @@ public:
         
         //rollout
         double value = rand();
-
+        std::cout << "rollout value = " << value << std::endl;
         //backpropagation
         //printf("backpropagation\n");
         visitedNode.pop();
