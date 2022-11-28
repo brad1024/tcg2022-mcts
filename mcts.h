@@ -84,18 +84,20 @@ public:
     }
     
     action::place GetBestmove(){
+        
         int index = 0;
         double maxValue = -std::numeric_limits<double>::max();
         if(legalMoves.size()==0){
             return action();
         }
+        return legalMoves[index];
         for(int i=0; i<legalNodes.size(); i++){
             if(legalNodes[i]->value > maxValue){
                 index = i;
                 maxValue = legalNodes[i]->value;
             }
         }
-        return legalMoves[index];
+        
     }
 
 
