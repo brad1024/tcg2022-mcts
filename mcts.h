@@ -38,16 +38,19 @@ public:
         for(int i=0; i<legalNodes.size(); i++){
             totalVisit += legalNodes[i]->visitCount;
         }
+        
         for(int i=0; i<legalNodes.size(); i++){
-            
-            value = -legalNodes[i]->value/(legalNodes[i]->visitCount+EPSILON) + sqrt(2*log(totalVisit)/(legalNodes[i]->visitCount+EPSILON));
-            std::cout << legalNodes[i]->value << " ";
+            if(legalNodes[i]->visitCount==0){
+                value = std::numeric_limits<double>::max();
+            }
+            else{
+                value = -legalNodes[i]->value/legalNodes[i]->visitCount + sqrt(2*log(totalVisit)/legalNodes[i]->visitCount);
+            }
             if(value>maxValue){
                 maxValue = value;
                 index = i;
             }
         }
-        std::cout << " select node: " << index << std::endl;
         return legalNodes[index];
     } 
     void Expand(board::piece_type who){
