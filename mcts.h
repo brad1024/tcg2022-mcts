@@ -115,7 +115,7 @@ public:
         if(legalMoves.size()==0){
             return action();
         }
-        std::cout << "\nchild value:";
+        //std::cout << "\nchild value:";
         for(int i=0; i<legalNodes.size(); i++){
             std::cout << legalNodes[i]->value << " ";
             if(-legalNodes[i]->value > maxValue){
@@ -123,7 +123,7 @@ public:
                 maxValue = -legalNodes[i]->value;
             }
         }
-        std::cout << "select move = " << index << std::endl;
+        //std::cout << "select move = " << index << std::endl;
         return legalMoves[index];
     }
 
