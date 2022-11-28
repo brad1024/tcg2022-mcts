@@ -127,7 +127,7 @@ public:
 	}
 	*/
 	virtual action take_action(const board& state) {
-		printf("take action");
+		//printf("take action");
 		
 		MTCS_Tree tree = MTCS_Tree(who, state, 10);
 		return tree.GetBestMove();
