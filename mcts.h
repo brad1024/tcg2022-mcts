@@ -172,7 +172,7 @@ public:
         //value = value>0.5?1:0;
 
         //backpropagation
-        std::cout << "visited nodes: " << visitedNode.size() << std::endl;
+        std::cout << iter << "visited nodes: " << visitedNode.size() << std::endl;
         while(!visitedNode.empty()){
             currentNode = visitedNode.top();
             currentNode->Update(value);
