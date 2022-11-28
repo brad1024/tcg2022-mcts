@@ -73,7 +73,6 @@ public:
 
     double Rollout(board::piece_type role, board::piece_type who){
         std::vector<action::place> space(board::size_x * board::size_y);
-        int moves=0;
         board curState = state;
         board::piece_type lastMove = who;
         bool canMove=true;
@@ -92,7 +91,6 @@ public:
                 }
             }
             if(canMove){
-                moves++;
                 lastMove = lastMove==board::black? board::white : board::black;
             }
             else{
@@ -177,7 +175,6 @@ public:
         if(!currentNode->isIsLeaf()){
             value = currentNode->Rollout(who, expandWho);
             currentNode = currentNode->Select();
-            currentNode->visitCount++;
             currentNode->value = value;
         }
         else{
