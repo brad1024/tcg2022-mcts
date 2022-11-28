@@ -184,9 +184,9 @@ public:
         }
         
         for(int i=0; i<root->legalNodes.size(); i++){
-            //std::cout << root->legalNodes[i]->value << "  ";
+            std::cout << root->legalNodes[i]->value << "  ";
         }
-        //std::cout << std::endl;
+        std::cout << "\nroot value: " << root->value << std::endl;
     }
     
 private:
