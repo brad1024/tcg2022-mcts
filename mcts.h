@@ -99,11 +99,13 @@ public:
         }
         
         for(int i=0; i<legalNodes.size(); i++){
+            std::cout << legalNodes[i];
             if(legalNodes[i]->value > maxValue){
                 index = i;
                 maxValue = legalNodes[i]->value;
             }
         }
+        std::cout << std::endl;
         //std::cout << "select move = " << legalMoves[index] << std::endl;
         return legalMoves[index];
     }
