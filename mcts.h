@@ -129,7 +129,7 @@ public:
     }
     
     void Simulate(){
-        printf("start simulate/n");
+        printf("start simulate\n");
         while(!visitedNode.empty()){
             visitedNode.pop();
         }
@@ -140,12 +140,12 @@ public:
             currentNode = currentNode->Select();
             visitedNode.push(currentNode);
         }
-        /*
+        
         //expand
         currentNode->Expand();
         currentNode = currentNode->Select();
         visitedNode.push(currentNode);
-
+        /*
         //rollout
         double value = currentNode->Rollout();
 
